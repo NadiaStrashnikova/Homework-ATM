@@ -1,23 +1,13 @@
 import sys
-import typing
 
-import nomenklatura
-
-
-def get_name(s):
-    pin = nomenklatura.dict_clients.get(s)
-    if pin is None:
-        print('Няма такова име')
-        sys.exit()
-    else:
-        return pin
+from clients import Client, ListClients
 
 
-def get_pin(real_pin):
+def get_pin(real_client: Client):
     ok = False
     for _ in range(1, 4):
         new_pin = input('Въведете пин:')
-        if new_pin == real_pin:
+        if new_pin == real_client.pin:
             ok = True
             break
     if not ok:
@@ -25,41 +15,40 @@ def get_pin(real_pin):
         sys.exit()
 
 
-def balans(name1):
-    balans1 = nomenklatura.dict_clients_balans.get(name1)
-    print(f'Налична сума: {balans1}')
-
-
-def teglene(name2):
-    tegli_s = float(input('Колко теглите:'))
-    client_suma = nomenklatura.dict_clients_balans.get(name2)
-    while client_suma < tegli_s:
-        tegli_s = float(input('Сумата е повече от наличното. Колко теглите:'))
-    new_suma = client_suma - tegli_s
-    nomenklatura.dict_clients_balans[name2] = new_suma
-    print(f'Налична сума: {new_suma}')
+def withdrawing_money(real_client: Client):
+    tegli_suma = float(input('Колко теглите:'))
+    while real_client.balance < tegli_suma:
+        tegli_suma = float(input('Сумата е повече от наличното. Колко теглите:'))
+    real_client.subtract_from_balance(tegli_suma)
+    real_client.print_balance()
     sys.exit()
 
 
-def vnos(name3):
+def money_laundering(real_client: Client):
     add_s = float(input('Колко внасяте:'))
-    client_suma = nomenklatura.dict_clients_balans.get(name3)
-    new_suma = client_suma + add_s
-    nomenklatura.dict_clients_balans[name3] = new_suma
-    print(f'Налична сума: {new_suma}')
+    real_client.add_to_balance(add_s)
+    real_client.print_balance()
     sys.exit()
 
 
 if __name__ == '__main__':
+    all_clients = ListClients()
+    all_clients.load_clients()
+
+#    Input for which one client is all about
     name = input('Въведете име:')
-    ima_pin = get_name(name)
-    get_pin(ima_pin)
-    balans(name)
+    real_client = all_clients.check_if_client_exists(name)
+    if real_client == None:
+        sys.exit()
+    get_pin(real_client)
+    real_client.print_balance()
+
+#    What kind of action will be doing
     izbor = int(input('Какво избирате Теглене/Внасяне/Баланс (1/2/3) : '))
     if izbor == 1:
-        teglene(name)
+        withdrawing_money(real_client)
     elif izbor == 2:
-        vnos(name)
+        money_laundering(real_client)
     elif izbor == 3:
-        print(f'Налична сума: {balans}')
+        real_client.print_balance()
         sys.exit()

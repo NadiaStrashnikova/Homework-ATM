@@ -1,0 +1,14 @@
+[
+ {"_name":"Iwo",
+  "_pin":"qqq",
+  "balance":212
+},
+ {"_name":"Pepi",
+  "_pin":"aaa",
+  "balance":1200
+},
+ {"_name":"Ada",
+  "_pin":"zzz",
+  "balance":200
+}
+]
