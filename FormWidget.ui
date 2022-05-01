@@ -7,44 +7,22 @@
     <x>0</x>
     <y>0</y>
     <width>315</width>
-    <height>242</height>
+    <height>290</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="formLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>170</y>
-     <width>281</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QFormLayout" name="formLayout_2">
-    <item row="0" column="0">
-     <widget class="QLabel" name="lbl_Balance">
-      <property name="text">
-       <string>Balance</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="le_Balance"/>
-    </item>
-   </layout>
-  </widget>
   <widget class="QWidget" name="formLayoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
      <width>291</width>
-     <height>51</height>
+     <height>111</height>
     </rect>
    </property>
-   <layout class="QFormLayout" name="formLayout">
+   <layout class="QFormLayout" name="frml_login">
     <item row="0" column="0">
      <widget class="QLabel" name="lbl_UserName">
       <property name="text">
@@ -56,23 +34,125 @@
      <widget class="QLineEdit" name="le_UserName"/>
     </item>
     <item row="1" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="btn_CheckName">
+      <property name="text">
+       <string>Check name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
      <widget class="QLabel" name="lbl_PIN">
       <property name="text">
        <string>PIN:</string>
       </property>
      </widget>
     </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="le_PIN">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="btn_CheckPin">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Check pin</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="formLayoutWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>130</y>
+     <width>291</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <layout class="QFormLayout" name="frml_action">
+    <property name="horizontalSpacing">
+     <number>0</number>
+    </property>
+    <property name="verticalSpacing">
+     <number>0</number>
+    </property>
+    <item row="6" column="0">
+     <widget class="QLineEdit" name="le_SumToOperate">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QRadioButton" name="rb_withdraw">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Withdraw</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>18</width>
+        <height>12</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
     <item row="1" column="1">
-     <widget class="QLineEdit" name="le_PIN"/>
+     <widget class="QRadioButton" name="rb_launder">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Launder</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QPushButton" name="pushButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Do action</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
   <widget class="QPushButton" name="Btn_Close">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>210</y>
-     <width>75</width>
+     <x>30</x>
+     <y>250</y>
+     <width>236</width>
      <height>23</height>
     </rect>
    </property>
@@ -80,72 +160,28 @@
     <string>Close</string>
    </property>
   </widget>
-  <widget class="QWidget" name="formLayoutWidget_3">
+  <widget class="QWidget" name="formLayoutWidget_2">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>70</y>
+     <y>210</y>
      <width>291</width>
-     <height>91</height>
+     <height>31</height>
     </rect>
    </property>
-   <layout class="QFormLayout" name="formLayout_3">
+   <layout class="QFormLayout" name="formLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="lbl_Balance">
+      <property name="text">
+       <string>Balance</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="1">
-     <widget class="QGroupBox" name="gb_action">
+     <widget class="QLineEdit" name="le_Balance">
       <property name="enabled">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>88</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>Choose action:</string>
-      </property>
-      <widget class="QRadioButton" name="rb_withdraw">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>20</y>
-         <width>82</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Withdraw</string>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="rb_launder">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>40</y>
-         <width>82</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Launder</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="le_SumToOperate">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>30</y>
-         <width>141</width>
-         <height>21</height>
-        </rect>
-       </property>
-      </widget>
      </widget>
     </item>
    </layout>

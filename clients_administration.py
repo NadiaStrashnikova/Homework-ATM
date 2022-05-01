@@ -2,10 +2,11 @@ import sys
 
 from clients import Client, ListClients
 
-def get_real_client()-> Client:
+def get_real_client(gw)-> Client:
     all_clients=ListClients()
     all_clients.load_clients()
-    name = input('Въведете име:')
+    #name = Inserted_user_name()
+    name = gw.Inserted_user_name()
     real_client = all_clients.check_if_client_exists(name)
     if real_client == None:
         sys.exit()
@@ -23,3 +24,6 @@ def get_pin(real_client: Client):
     if not ok:
         print('Картата е блокирана')
         sys.exit()
+
+if __name__ == '__main__':
+    test_client = get_real_client()
