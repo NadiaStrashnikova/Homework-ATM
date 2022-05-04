@@ -1,4 +1,5 @@
 import json
+from os import path
 
 
 class Client:
@@ -26,13 +27,14 @@ class Client:
         self.balance += value_to_add
 
 
-class ListClients:
+class ClientsList:
 
     def __init__(self):
         self._all_clients = []
+        self.load_clients()
 
     def load_clients(self):
-        file_name = 'list_clients.json'
+        file_name = path.abspath('ATM.list_clients.json')
         with open(file_name, "r") as f:
             self._all_clients = json.load(f)
 

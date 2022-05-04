@@ -1,9 +1,9 @@
 import sys
 
-from clients import Client, ListClients
+from clients import Client, ClientsList
 
 def get_real_client(gw)-> Client:
-    all_clients=ListClients()
+    all_clients=ClientsList()
     all_clients.load_clients()
     #name = Inserted_user_name()
     name = gw.Inserted_user_name()

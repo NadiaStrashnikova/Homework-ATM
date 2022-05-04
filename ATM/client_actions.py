@@ -1,6 +1,6 @@
 import sys
 
-from clients import Client, ListClients
+from clients import Client, ClientsList
 
 def withdrawing_money(real_client: Client):
     tegli_suma = float(input('Колко теглите:'))
