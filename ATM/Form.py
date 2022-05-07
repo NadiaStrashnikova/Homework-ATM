@@ -1,4 +1,3 @@
-from PyQt5 import QtCore, QtWidgets
 from PyQt5 import QtWidgets as qtw
 from ATM.clients import ClientsList
 from ATM.Ui_FormWidget import Ui_Form
@@ -58,6 +57,7 @@ class m_Form(Ui_Form):
             self.withdrawing_money()
 
     def withdrawing_money(self):
+        self.is_numbered_entered()
         tegli_suma = float(self.le_SumToOperate.text())
         if self.real_client.balance < tegli_suma:
             msg_box = qtw.QMessageBox()
@@ -69,9 +69,21 @@ class m_Form(Ui_Form):
             self.lbl_Balance_value.setText(str(self.real_client.balance))
 
     def money_laundering(self):
+        self.is_numbered_entered()
         add_s = float(self.le_SumToOperate.text())
         self.real_client.add_to_balance(add_s)
         self.lbl_Balance_value.setText(str(self.real_client.balance))
+
+    def is_numbered_entered(self):
+        text = self.le_SumToOperate.text()
+        text.replace('.','')
+        text.replace(',', '')
+        if not text.isnumeric():
+            msg_box = qtw.QMessageBox()
+            msg_box.setIcon(qtw.QMessageBox.Information)
+            msg_box.setText("Enter only digits")
+            msg_box.exec()
+            self.le_SumToOperate.setText('0.00')
 
     def close_app(self):
         exit()
