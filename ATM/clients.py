@@ -34,7 +34,7 @@ class ClientsList:
         self.load_clients()
 
     def load_clients(self):
-        file_name = path.abspath('ATM.list_clients.json')
+        file_name = path.abspath('./ATM/list_clients.json')
         with open(file_name, "r") as f:
             self._all_clients = json.load(f)
 
@@ -43,5 +43,4 @@ class ClientsList:
             if one_client["_name"] == s:
                 founded_client = Client(s, one_client["_pin"], one_client["balance"])
                 return founded_client
-        print('Няма такова име')
         return None

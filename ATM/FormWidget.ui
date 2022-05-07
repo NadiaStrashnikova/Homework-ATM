@@ -153,7 +153,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="Btn_Close">
+  <widget class="QPushButton" name="btn_Close">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -177,14 +177,14 @@
    </property>
    <layout class="QFormLayout" name="formLayout">
     <item row="0" column="0">
-     <widget class="QLabel" name="lbl_Balanc_value">
+     <widget class="QLabel" name="lbl_Balance">
       <property name="text">
        <string>Balance</string>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QLabel" name="lbl_Balance_2">
+     <widget class="QLabel" name="lbl_Balance_value">
       <property name="text">
        <string>0.00</string>
       </property>
