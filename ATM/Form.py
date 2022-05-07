@@ -2,11 +2,12 @@ from PyQt5 import QtWidgets as qtw
 from ATM.clients import ClientsList
 from ATM.Ui_FormWidget import Ui_Form
 
-class m_Form(Ui_Form):
+class LoginForm(Ui_Form, qtw.QWidget):
     entered_pin_count = 0
 
-    def __init__(self,w)->None:
-        self.setupUi(w)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.setupUi(self)
 
         self.all_clients = ClientsList()
 
@@ -19,10 +20,7 @@ class m_Form(Ui_Form):
         name = self.le_UserName.text()
         self.real_client = self.all_clients.check_if_client_exists(name)
         if self.real_client == None:
-            msg_box = qtw.QMessageBox()
-            msg_box.setIcon(qtw.QMessageBox.Information)
-            msg_box.setText("There is no such user.")
-            msg_box.exec()
+            self.show_message("There is no such user.")
         else:
             self.le_PIN.setDisabled(False)
             self.le_PIN.setPlaceholderText('Enter PIN')
@@ -39,15 +37,9 @@ class m_Form(Ui_Form):
                 self.le_SumToOperate.setDisabled(False)
                 self.btn_Action.setDisabled(False)
             else:
-                msg_box = qtw.QMessageBox()
-                msg_box.setIcon(qtw.QMessageBox.Information)
-                msg_box.setText("Wrong PIN")
-                msg_box.exec()
+                self.show_message("Wrong PIN")
         else:
-            msg_box = qtw.QMessageBox()
-            msg_box.setIcon(qtw.QMessageBox.Information)
-            msg_box.setText("The card is blocked")
-            msg_box.exec()
+            self.show_message("The card is blocked")
             exit()
 
     def client_make_choice(self):
@@ -60,10 +52,7 @@ class m_Form(Ui_Form):
         self.is_numbered_entered()
         tegli_suma = float(self.le_SumToOperate.text())
         if self.real_client.balance < tegli_suma:
-            msg_box = qtw.QMessageBox()
-            msg_box.setIcon(qtw.QMessageBox.Information)
-            msg_box.setText("The value is more than you have. Enter new value")
-            msg_box.exec()
+            self.show_message("The value is more than you have. Enter new value")
         else:
             self.real_client.subtract_from_balance(tegli_suma)
             self.lbl_Balance_value.setText(str(self.real_client.balance))
@@ -79,11 +68,14 @@ class m_Form(Ui_Form):
         text.replace('.','')
         text.replace(',', '')
         if not text.isnumeric():
-            msg_box = qtw.QMessageBox()
-            msg_box.setIcon(qtw.QMessageBox.Information)
-            msg_box.setText("Enter only digits")
-            msg_box.exec()
+            self.show_message("Enter only digits")
             self.le_SumToOperate.setText('0.00')
+
+    def show_message(self, text):
+        msg_box = qtw.QMessageBox()
+        msg_box.setIcon(qtw.QMessageBox.Information)
+        msg_box.setText(text)
+        msg_box.exec()
 
     def close_app(self):
         exit()
