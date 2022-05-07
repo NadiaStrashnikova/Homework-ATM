@@ -4,7 +4,8 @@ from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
 import sys
 
-from ATM.Form import LoginForm
+from ATM.LoginForm import LoginForm
+from ATM.RegisterForm import RegisterForm
 
 class MainWindow(qtw.QWidget):
 
@@ -24,13 +25,19 @@ class MainWindow(qtw.QWidget):
             main_layout.addWidget(btn_login)
 
             btn_login.clicked.connect(self.onBtnLoginClick)
+            btn_registration.clicked.connect(self.obBtnRegisterClick)
 
             self.show()
 
       @qtc.pyqtSlot(bool)
       def onBtnLoginClick(self, *args):
-            self.form = LoginForm()
-            self.form.show()
+            self.log_form = LoginForm()
+            self.log_form.show()
+
+      @qtc.pyqtSlot(bool)
+      def obBtnRegisterClick(self, *args):
+            self.reg_form = RegisterForm()
+            self.reg_form.show()
 
 if __name__ == '__main__':
       app = qtw.QApplication(sys.argv)
