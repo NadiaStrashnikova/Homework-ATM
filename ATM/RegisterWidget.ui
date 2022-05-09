@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>351</width>
-    <height>157</height>
+    <height>180</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>20</x>
      <y>10</y>
      <width>311</width>
-     <height>129</height>
+     <height>158</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="frm_layout">
@@ -70,7 +70,7 @@
      </spacer>
     </item>
     <item row="4" column="1">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="btnSubmit">
       <property name="text">
        <string>Register user</string>
       </property>
@@ -88,6 +88,13 @@
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="5" column="1">
+     <widget class="QPushButton" name="btnCancel">
+      <property name="text">
+       <string>Close</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
