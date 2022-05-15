@@ -37,8 +37,8 @@ class DB:
     def insert_user(self, user_name, password):
         c = self.cnx.cursor()
         q = f"""
-            INSERT INTO users
-            VALUES (5, %s, '', %s);
+            INSERT INTO users (user_name, password) 
+            VALUES ( %s,  %s);
         """
         # execute the query
         c.execute(q, (user_name, password))

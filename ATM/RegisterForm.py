@@ -14,7 +14,7 @@ class RegisterForm(Ui_Form, qtw.QWidget):
 
 	@qtc.pyqtSlot(bool)
 	def onBtnSubmitClick(self):
-		user_name = self.leUserName.text()
+		user_name = self.le_user_name.text()
 		user_pasword = self.lePass.text()
 		print(user_name, user_pasword)
 
