@@ -10,7 +10,7 @@ class RegisterForm(Ui_Form, qtw.QWidget):
 		self.setupUi(self)
 		self.btnSubmit.clicked.connect(self.onBtnSubmitClick)
 		self.btnCancel.clicked.connect(self.onBtnCloseClick)
-		self.db = DB('root', '123Proba321', 'test')
+		self.db = DB()
 
 	@qtc.pyqtSlot(bool)
 	def onBtnSubmitClick(self):
@@ -47,7 +47,7 @@ class RegisterForm(Ui_Form, qtw.QWidget):
 		self.close()
 
 if __name__ == '__main__':
-	db = DB('root', '123Proba321','test')
+	db = DB()
 
 	# let's use some hard-coded values for test:
 	user_name = 'Maria'
