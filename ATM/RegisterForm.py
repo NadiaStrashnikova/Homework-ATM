@@ -15,14 +15,17 @@ class RegisterForm(Ui_Form, qtw.QWidget):
 	@qtc.pyqtSlot(bool)
 	def onBtnSubmitClick(self):
 		user_name = self.le_user_name.text()
-		user_pasword = self.lePass.text()
-		print(user_name, user_pasword)
+		user_pasword = self.le_uesr_pin.text()
 
 		# HW: add your code, which will check if user exists in DB
-		if self.db.insert_user(user_name=user_name, password=user_pasword):
-			self.handleInsertSuccess()
+		if not self.db.authenticate(user_name, user_pasword):
+			if self.db.insert_user(user_name=user_name, password=user_pasword):
+				self.handleInsertSuccess()
+				print('Success')
+			else:
+				self.handleInsertFail()
 		else:
-			self.handleInsertFail()
+			print('There is such user')
 
 	def handleInsertSuccess(self):
 		msg_box = qtw.QMessageBox()
@@ -36,7 +39,7 @@ class RegisterForm(Ui_Form, qtw.QWidget):
 	def handleInsertFail(self):
 		msg_box = qtw.QMessageBox()
 		msg_box.setIcon(qtw.QMessageBox.Critical)
-		msg_box.setText("User is not loged in")
+		msg_box.setText("Sorry. Did not registered that name")
 		# msg_box.setInformativeText("Some informative text");
 		msg_box.setStandardButtons(qtw.QMessageBox.Ok)
 		msg_box.setDefaultButton(qtw.QMessageBox.Ok)

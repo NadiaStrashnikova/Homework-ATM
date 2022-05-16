@@ -41,36 +41,28 @@ class DB:
     def authenticate(self, user_name, password):
         # create a cursor for the connection
         c = self.cnx.cursor()
-
-        # prepare SQL query:
         q = f"""
             SELECT * FROM users
                 WHERE username=%s AND password=%s
         """
-        # execute the query
         c.execute(q, (user_name, password))
 
         # we are only interested if 1 or 0 rows are returned
         res = c.fetchone()
-
-        # do something with the result
         return True if res else False
 
     def insert_user(self, user_name, password):
         c = self.cnx.cursor()
         q = f"""
-            INSERT INTO users (user_name, password) 
-            VALUES ( %s,  %s);
+            INSERT INTO users (username, email, password)
+             VALUES ( %s, %s, %s);
         """
-        # execute the query
-        c.execute(q, (user_name, password))
+        c.execute(q, (user_name, 'mail2',  password))
 
+        #c.commit() - doesn't work
         self.cnx.commit()
-        # we are only interested if 1 or 0 rows are returned
-        # res = c.fetchone()
-        #
-        # # do something with the result
-        # return True if res else False
+        res = self.authenticate(user_name, password)
+        return True if res else False
 
 if __name__ == '__main__':
 	db = DB()
