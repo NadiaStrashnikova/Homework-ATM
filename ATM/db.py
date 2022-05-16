@@ -55,7 +55,7 @@ class DB:
         c = self.cnx.cursor()
         q = f"""
             INSERT INTO users (username, email, password)
-             VALUES ( %s, %s, %s);
+            VALUES ( %s, %s, %s);
         """
         c.execute(q, (user_name, 'mail2',  password))
 

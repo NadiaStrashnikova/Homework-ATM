@@ -21,7 +21,7 @@ class RegisterForm(Ui_Form, qtw.QWidget):
 		if not self.db.authenticate(user_name, user_pasword):
 			if self.db.insert_user(user_name=user_name, password=user_pasword):
 				self.handleInsertSuccess()
-				print('Success')
+				print('Success.')
 			else:
 				self.handleInsertFail()
 		else:
