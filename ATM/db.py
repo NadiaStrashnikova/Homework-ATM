@@ -51,18 +51,19 @@ class DB:
         res = c.fetchone()
         return True if res else False
 
-    def insert_user(self, user_name, password):
+    def insert_user(self, user_name, email, password):
         c = self.cnx.cursor()
         q = f"""
             INSERT INTO users (username, email, password)
             VALUES ( %s, %s, %s);
         """
-        c.execute(q, (user_name, 'mail2',  password))
+        c.execute(q, (user_name, email,  password))
 
         #c.commit() - doesn't work
         self.cnx.commit()
-        res = self.authenticate(user_name, password)
-        return True if res else False
+        return True if c.rowcount>0 else False
+        #res = self.authenticate(user_name, password)
+        #return True if res else False
 
 if __name__ == '__main__':
 	db = DB()

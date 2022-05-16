@@ -16,16 +16,16 @@ class RegisterForm(Ui_Form, qtw.QWidget):
 	def onBtnSubmitClick(self):
 		user_name = self.le_user_name.text()
 		user_pasword = self.le_uesr_pin.text()
+		user_email = self.le_email.text()
 
 		# HW: add your code, which will check if user exists in DB
 		if not self.db.authenticate(user_name, user_pasword):
-			if self.db.insert_user(user_name=user_name, password=user_pasword):
+			if self.db.insert_user(user_name=user_name, email=user_email, password=user_pasword):
 				self.handleInsertSuccess()
-				print('Success.')
 			else:
 				self.handleInsertFail()
 		else:
-			print('There is such user')
+			self.handleInsertDuplicate()
 
 	def handleInsertSuccess(self):
 		msg_box = qtw.QMessageBox()
@@ -44,6 +44,15 @@ class RegisterForm(Ui_Form, qtw.QWidget):
 		msg_box.setStandardButtons(qtw.QMessageBox.Ok)
 		msg_box.setDefaultButton(qtw.QMessageBox.Ok)
 		msg_box.buttonClicked.connect(lambda btn: print(btn.text()))
+		msg_box.exec()
+
+	def handleInsertDuplicate(self):
+		msg_box = qtw.QMessageBox()
+		msg_box.setIcon(qtw.QMessageBox.Information)
+		msg_box.setText('There is such user')
+		msg_box.setInformativeText("Some informative text")
+		msg_box.setStandardButtons(qtw.QMessageBox.Ok | qtw.QMessageBox.Cancel)
+		msg_box.setDefaultButton(qtw.QMessageBox.Ok)
 		msg_box.exec()
 
 	def onBtnCloseClick(self):
